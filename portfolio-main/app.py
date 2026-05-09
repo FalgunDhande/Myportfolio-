@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 app = Flask(__name__)
+app.secret_key = "your_secret_key_here"  # Required for flash messages
 
 # Load .env variables reliably on PythonAnywhere
 basedir = os.path.abspath(os.path.dirname(__file__))
