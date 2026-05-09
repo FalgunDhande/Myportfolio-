@@ -503,7 +503,7 @@
       </div>
       <div class="info-content">
         <h4>Location</h4>
-        <p>Jalgaon, Maharashtra, India</p>
+        <p>Mumbai, Maharashtra, India</p>
       </div>
     </div>
   </div>
@@ -516,12 +516,12 @@
         <h3>Find Me Here</h3>
         <p>
           <i class="fas fa-location-dot"></i>
-          Jalgaon, Maharashtra
+          Navi Mumbai, Maharashtra
         </p>
       </div>
       <div class="map-container">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59876.89793633594!2d75.52264872167968!3d20.99726700000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd90fa4a185ed29%3A0x923a3e3d5d6c6c6c!2sJalgaon%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1708267890123!5m2!1sen!2sin"
+          src="https://maps.google.com/maps?q=Navi%20Mumbai,%20Maharashtra,%20India&t=&z=12&ie=UTF8&iwloc=&output=embed"
           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
@@ -563,30 +563,31 @@
 
 <!-- Flash Messages -->
 {% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    {% for category, message in messages %}
-      {% if category == 'danger' %}
-      <div class="success-message" id="flashMessage-{{ loop.index }}" style="background: linear-gradient(135deg, #f44336 0%, #e53935 100%);">
-        <i class="fas fa-exclamation-circle"></i>
-        <span>{{ message }}</span>
-      </div>
-      {% else %}
-      <div class="success-message" id="flashMessage-{{ loop.index }}">
-        <i class="fas fa-check-circle"></i>
-        <span>{{ message }}</span>
-      </div>
-      {% endif %}
-      <script>
-        setTimeout(() => {
-          const msg = document.getElementById('flashMessage-{{ loop.index }}');
-          if (msg) {
-            msg.classList.add('hide');
-            setTimeout(() => msg.remove(), 500);
-          }
-        }, 6000);
-      </script>
-    {% endfor %}
-  {% endif %}
+{% if messages %}
+{% for category, message in messages %}
+{% if category == 'danger' %}
+<div class="success-message" id="flashMessage-{{ loop.index }}"
+  style="background: linear-gradient(135deg, #f44336 0%, #e53935 100%);">
+  <i class="fas fa-exclamation-circle"></i>
+  <span>{{ message }}</span>
+</div>
+{% else %}
+<div class="success-message" id="flashMessage-{{ loop.index }}">
+  <i class="fas fa-check-circle"></i>
+  <span>{{ message }}</span>
+</div>
+{% endif %}
+<script>
+  setTimeout(() => {
+    const msg = document.getElementById('flashMessage-{{ loop.index }}');
+    if (msg) {
+      msg.classList.add('hide');
+      setTimeout(() => msg.remove(), 500);
+    }
+  }, 6000);
+</script>
+{% endfor %}
+{% endif %}
 {% endwith %}
 
 <script>
