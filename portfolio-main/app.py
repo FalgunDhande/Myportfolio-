@@ -38,6 +38,10 @@ def contact():
 @app.route("/send_email", methods=["POST"])
 def send_email():
     try:
+        # Check if environment variables are loaded
+        if not os.getenv("EMAIL_ADDRESS") or not os.getenv("EMAIL_PASSWORD"):
+            raise Exception("Missing .env configuration! EMAIL_ADDRESS or EMAIL_PASSWORD is empty. Please check your .env file on PythonAnywhere.")
+
         name = request.form["fullname"]
         email = request.form["email"]
         phone = request.form["phone"]
