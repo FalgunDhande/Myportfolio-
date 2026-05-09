@@ -5,7 +5,10 @@ from dotenv import load_dotenv
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 app = Flask(__name__)
-load_dotenv()  # Load .env variables
+
+# Load .env variables reliably on PythonAnywhere
+basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir, '.env'))
 
 # Main pages
 @app.route("/")
