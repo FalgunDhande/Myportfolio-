@@ -561,22 +561,26 @@
   </div>
 </div>
 
-<!-- Success Message -->
-{% if request.args.get('status') == 'success' %}
-<div class="success-message" id="successMessage">
-  <i class="fas fa-check-circle"></i>
-  <span>Message sent successfully!</span>
-</div>
-<script>
-  setTimeout(() => {
-    const msg = document.getElementById('successMessage');
-    if (msg) {
-      msg.classList.add('hide');
-      setTimeout(() => msg.remove(), 500);
-    }
-  }, 4000);
-</script>
-{% endif %}
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="success-message" id="flashMessage-{{ loop.index }}" style="{% if category == 'danger' %}background: linear-gradient(135deg, #f44336 0%, #e53935 100%);{% endif %}">
+        <i class="fas {% if category == 'danger' %}fa-exclamation-circle{% else %}fa-check-circle{% endif %}"></i>
+        <span>{{ message }}</span>
+      </div>
+      <script>
+        setTimeout(() => {
+          const msg = document.getElementById('flashMessage-{{ loop.index }}');
+          if (msg) {
+            msg.classList.add('hide');
+            setTimeout(() => msg.remove(), 500);
+          }
+        }, 6000);
+      </script>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
 
 <script>
   // Form submission handling
