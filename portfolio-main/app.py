@@ -94,7 +94,8 @@ def send_email():
 
     except Exception as e:
         print(f"Error sending email: {e}")
-        return redirect(url_for("contact", status="success"))
+        flash(f"❌ Failed to send message. Error: {str(e)}", "danger")
+        return redirect(url_for("contact"))
 
 
 @app.errorhandler(404)
